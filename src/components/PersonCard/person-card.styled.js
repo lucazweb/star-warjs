@@ -8,8 +8,9 @@ export const Card = styled.div`
   background: white;
   border-radius: 4px;
   margin: 14px;
-
+  border-top: 4px solid #109cbc;
   &:hover {
+    border-color: #ffd282;
     box-shadow: 0 0 14px #109cbc;
   }
 
