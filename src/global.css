@@ -14,17 +14,11 @@ body {
   background: #292929;
 }
 
-pre {
-  color: white;
-}
-
 @font-face {
-  font-family: "starwars";
-  src: url("assets/fonts/STARWARS.eot");
-  src: url("assets/fonts/STARWARS.eot?#iefix") format("embedded-opentype"),
-    url("assets/fonts/STARWARS.woff") format("woff"),
-    url("assets/fonts/STARWARS.ttf") format("truetype"),
-    url("assets/fonts/STARWARS.svg#starwregular") format("svg");
+  font-family: "deathstar";
+  src: url("assets/fonts/DEATH_STAR.ttf");
+  src: url("assets/fonts/DEATH_STAR.ttf") format("truetype"),
+    url("assets/fonts/DEATH_STAR.otf") format("opentype");
 }
 
 p,
