@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const mobileMediaQuery = `(min-device-width: 320px) and (max-device-width: 1024px)`;
+
 export const DetailCardWrapper = styled.div`
   display: flex;
   position: relative;
@@ -10,14 +12,25 @@ export const DetailCardWrapper = styled.div`
   background: white;
   border-radius: 4px;
   padding: 22px;
+  @media only screen and ${mobileMediaQuery} {
+    width: 90%;
+  }
 
   .person-name {
     position: absolute;
     top: -18px;
     left: 20px;
-    background: red;
     padding: 4px 12px;
     background: #109cbc;
+    @media only screen and ${mobileMediaQuery} {
+      position: relative;
+      background: none;
+      top: auto;
+      left: auto;
+      text-align: center;
+      padding-top: 0;
+      margin-bottom: 20px;
+    }
   }
 
   .person-image {
@@ -34,12 +47,30 @@ export const DetailCardWrapper = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 0 0 2px black;
+    @media only screen and ${mobileMediaQuery} {
+      position: relative;
+      align-self: flex-start;
+      flex-grow: 0;
+      flex-shrink: 0;
+      margin: auto;
+      left: auto;
+      top: auto;
+      border: 1px solid #109cbc;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+    }
   }
 `;
 
 export const DetailsCardBody = styled.div`
   padding-left: 140px;
   padding-top: 40px;
+
+  @media only screen and ${mobileMediaQuery} {
+    padding-left: 0;
+    padding-top: 0;
+  }
   .person-attributes {
     margin-top: 20px;
     h2 {
