@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const DetailsContainer = styled.div`
   position: relative;
   width: 100%;
 `;
 
-export const BackButton = styled.div`
+export const BackButton = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,6 +21,15 @@ export const BackButton = styled.div`
   background: white;
   border-radius: 50%;
   cursor: pointer; 
+
+  &:hover{
+    background: #109cbc;
+    color: white;
+  }
+
+  svg{
+    margin-left: -1px;
+  }
 `;
 
 export const MobileHeader = styled.div`

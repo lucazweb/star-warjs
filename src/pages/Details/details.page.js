@@ -7,7 +7,7 @@ import { GoTriangleLeft } from "react-icons/go";
 export const Details = () => (
   <DetailsContainer>
     <Header />
-    <BackButton> 
+    <BackButton to='/'> 
       <GoTriangleLeft />
     </BackButton>
     <DetailsCard />
