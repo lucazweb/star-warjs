@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -10,9 +12,24 @@ body {
   font-size: 14px;
   font-family: Roboto, sans-serif;
   background: #292929;
-  -webkit-font-smoothing: antialiased;
 }
 
 pre {
   color: white;
+}
+
+@font-face {
+  font-family: "starwars";
+  src: url("assets/fonts/STARWARS.eot");
+  src: url("assets/fonts/STARWARS.eot?#iefix") format("embedded-opentype"),
+    url("assets/fonts/STARWARS.woff") format("woff"),
+    url("assets/fonts/STARWARS.ttf") format("truetype"),
+    url("assets/fonts/STARWARS.svg#starwregular") format("svg");
+}
+
+p,
+strong,
+span,
+a {
+  font-family: "Roboto", sans-serif;
 }
