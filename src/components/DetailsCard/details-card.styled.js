@@ -14,6 +14,7 @@ export const DetailCardWrapper = styled.div`
   padding: 22px;
   @media only screen and ${mobileMediaQuery} {
     width: 90%;
+    height: auto;
   }
 
   .person-name {
@@ -104,11 +105,18 @@ export const StarshipBox = styled(DetailsCardBody)`
   border-top: 1px solid #109cbc;
   border-right: 1px solid #109cbc;
 
+  @media only screen and ${mobileMediaQuery} {
+    flex-direction: column;
+  }
+
   .starship-card {
     margin: 5px;
     border: 1px solid #109cbc;
     padding: 6px;
     width: 33%;
+    @media only screen and ${mobileMediaQuery} {
+      width: 100%;
+    }
     h3 {
       margin-bottom: 5px;
       font-size: 0.9em;
