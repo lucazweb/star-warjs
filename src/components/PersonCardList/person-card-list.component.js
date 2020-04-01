@@ -1,15 +1,24 @@
 import React from "react";
 import { ListBox } from "./person-card-list.styled";
 import { PersonCard } from "../PersonCard";
+import { connect } from "react-redux";
 
-export const PersonCardList = () => (
-  <ListBox>
-    <PersonCard />
-    <PersonCard />
-    <PersonCard />
+const randomId = () => Math.random().toString(36).substr(2, 9);
 
-    <PersonCard />
-    <PersonCard />
-    <PersonCard />
-  </ListBox>
-);
+const PersonCardListComponent = ({ persons }) => {
+  return (
+    <ListBox>
+      {persons.map((person) => (
+        <PersonCard key={randomId()} person={person} />
+      ))}
+    </ListBox>
+  );
+};
+
+const mapStateToProps = ({ persons }) => {
+  return {
+    persons: persons.data,
+  };
+};
+
+export const PersonCardList = connect(mapStateToProps)(PersonCardListComponent);
