@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Header } from "../components/Header";
 import { PersonCardList } from "../components/PersonCardList";
 import { Pagination } from "../components/Pagination";
-
+import { ErrorDisplay } from "../components/ErrorDisplay";
 import { getPersons } from "../store/actions/persons";
 import store from "../store";
 
@@ -18,6 +18,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <Header />
+      <ErrorDisplay />
       <PersonCardList />
       <Pagination />
     </div>

@@ -1,5 +1,10 @@
 import { call, put, all } from "redux-saga/effects";
-import { getPersonsSuccess, getPersonsFailure } from "../actions/persons";
+import {
+  getPersons as getPersonsReq,
+  getPersonsSuccess,
+  getPersonsFailure,
+  setCurrentPage,
+} from "../actions/persons";
 import api, { apiCustomSearch, api_key } from "../../services/api";
 
 export function* getPersons(action) {
@@ -22,7 +27,16 @@ export function* getPersons(action) {
   console.log(request_data);
 
   try {
-    const data = yield all(request_data.map((p) => call(api.get, p)));
+    const data = yield all(
+      request_data.map((p) => {
+        try {
+          return call(api.get, p);
+        } catch (err) {
+          console.log("FIRST: ", err);
+          return {};
+        }
+      })
+    );
 
     const persons = yield data.reduce((acc, obj) => [...acc, obj.data], []);
 
@@ -44,10 +58,19 @@ export function* getPersons(action) {
       (acc, person, idx) => [...acc, { ...person, image: personImages[idx] }],
       []
     );
-
+    yield put(setCurrentPage(action.payload.page));
     yield put(getPersonsSuccess(result));
   } catch (err) {
-    console.log(err);
-    yield put(getPersonsFailure("Error"));
+    // console.log(err);
+    yield put(getPersonsFailure(`Oups, something wrong with page ${page}..`));
+
+    yield put(
+      getPersonsReq({
+        page: page + 1,
+        limit,
+      })
+    );
+
+    yield put(setCurrentPage(page + 1));
   }
 }
