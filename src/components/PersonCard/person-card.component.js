@@ -1,15 +1,20 @@
 import React from "react";
 import { Card } from "./person-card.styled";
 import { useHistory } from "react-router-dom";
+import { selectPerson } from "../../store/actions/persons";
+import store from "../../store";
 
 export const PersonCard = ({ person }) => {
   const history = useHistory();
-  const selectPerson = () => {
-    history.push("/details/1");
+
+  const handlePersonSelection = (person) => {
+    console.log("handlePersonSelection");
+    store.dispatch(selectPerson(person));
+    history.push("/details");
   };
 
   return (
-    <Card onClick={() => selectPerson()}>
+    <Card onClick={() => handlePersonSelection(person)}>
       <div className="card-body">
         <div
           className="person-image"
