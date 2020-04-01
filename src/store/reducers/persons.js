@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   loading: false,
   data: [],
   selected_person: null,
+  page: 1,
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -16,6 +17,9 @@ export default function (state = INITIAL_STATE, action) {
 
     case Types.GET_PERSONS_FAILURE:
       return { ...state, loading: false };
+
+    case Types.SET_CURRENT_PAGE:
+      return { ...state, page: action.payload };
 
     case Types.SELECT_PERSON:
       return { ...state, selected_person: action.payload };

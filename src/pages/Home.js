@@ -8,7 +8,10 @@ import store from "../store";
 
 const Home = () => {
   useEffect(() => {
-    store.dispatch(getPersons());
+    const page = 2;
+    const limit = 6;
+
+    store.dispatch(getPersons({ page, limit }));
     return;
   }, []);
 

@@ -1,7 +1,8 @@
 import { Types } from "./actionTypes";
 
-export const getPersons = () => ({
+export const getPersons = (data) => ({
   type: Types.GET_PERSONS_REQUEST,
+  payload: data,
 });
 
 export const getPersonsSuccess = (data) => ({
@@ -12,6 +13,11 @@ export const getPersonsSuccess = (data) => ({
 export const getPersonsFailure = (error) => ({
   type: Types.GET_PERSONS_FAILURE,
   payload: error,
+});
+
+export const setCurrentPage = (data) => ({
+  type: Types.SET_CURRENT_PAGE,
+  payload: data,
 });
 
 export const selectPerson = (data) => ({

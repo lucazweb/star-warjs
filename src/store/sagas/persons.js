@@ -6,10 +6,10 @@ export function* getPersons(action) {
   console.log(action);
 
   const request_data = [];
-  const page = 1;
-  const limit = 6;
+  const page = action.payload.page;
+  const limit = action.payload.limit;
 
-  const setOffset = (page, limit) => {
+  const setOffset = (page, limit = 6) => {
     return (page - 1) * limit;
   };
 
