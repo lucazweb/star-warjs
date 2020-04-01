@@ -3,6 +3,7 @@ import { Types } from "../actions/actionTypes";
 const INITIAL_STATE = {
   loading: false,
   data: [],
+  selected_person: null,
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -15,6 +16,12 @@ export default function (state = INITIAL_STATE, action) {
 
     case Types.GET_PERSONS_FAILURE:
       return { ...state, loading: false };
+
+    case Types.SELECT_PERSON:
+      return { ...state, selected_person: action.payload };
+
+    case Types.UNSELECT_PERSON:
+      return { ...state, selected_person: null };
 
     default:
       return state;
