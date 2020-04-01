@@ -2,18 +2,27 @@ import { call, put, all } from "redux-saga/effects";
 import { getPersonsSuccess, getPersonsFailure } from "../actions/persons";
 import api, { apiCustomSearch, api_key } from "../../services/api";
 
-export function* getPersons() {
-  try {
-    const params = [
-      "/people/1",
-      "/people/2",
-      "/people/3",
-      "/people/4",
-      "/people/5",
-      "/people/6",
-    ];
+export function* getPersons(action) {
+  console.log(action);
 
-    const data = yield all(params.map((p) => call(api.get, p)));
+  const request_data = [];
+  const page = 1;
+  const limit = 6;
+
+  const setOffset = (page, limit) => {
+    return (page - 1) * limit;
+  };
+
+  const offset = setOffset(page, limit);
+
+  for (let i = offset + 1; i <= offset + limit; i++) {
+    request_data.push(`/people/${i}`);
+  }
+
+  console.log(request_data);
+
+  try {
+    const data = yield all(request_data.map((p) => call(api.get, p)));
 
     const persons = yield data.reduce((acc, obj) => [...acc, obj.data], []);
 
