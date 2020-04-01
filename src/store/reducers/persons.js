@@ -4,6 +4,8 @@ const INITIAL_STATE = {
   loading: false,
   data: [],
   selected_person: null,
+  page: 1,
+  error: null,
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -12,10 +14,18 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, loading: true };
 
     case Types.GET_PERSONS_SUCCESS:
-      return { data: action.payload, loading: false };
+      return {
+        ...state,
+        error: null,
+        data: action.payload,
+        loading: false,
+      };
 
     case Types.GET_PERSONS_FAILURE:
-      return { ...state, loading: false };
+      return { ...state, error: action.payload, loading: false };
+
+    case Types.SET_CURRENT_PAGE:
+      return { ...state, page: action.payload };
 
     case Types.SELECT_PERSON:
       return { ...state, selected_person: action.payload };
