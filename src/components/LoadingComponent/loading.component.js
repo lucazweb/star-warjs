@@ -5,6 +5,6 @@ import { Scan } from "react-preloading-component";
 export const Loading = () => (
   <LoadingBox>
     <Scan color="#109cbc" />
-    <p>Fetching space data</p>
+    <p>Fetching data from a galaxy far, far away..</p>
   </LoadingBox>
 );
