@@ -3,7 +3,6 @@ import { Card } from "./person-card.styled";
 import { useHistory } from "react-router-dom";
 
 export const PersonCard = ({ person }) => {
-  console.log(person);
   const history = useHistory();
   const selectPerson = () => {
     history.push("/details/1");
@@ -12,7 +11,10 @@ export const PersonCard = ({ person }) => {
   return (
     <Card onClick={() => selectPerson()}>
       <div className="card-body">
-        <div className="person-image"></div>
+        <div
+          className="person-image"
+          style={{ backgroundImage: `url(${person.image})` }}
+        ></div>
         <div className="person-info">
           <ul>
             <li>
