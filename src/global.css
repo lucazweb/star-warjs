@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-weight: 400;
+  font-size: 14px;
+  font-family: Roboto, sans-serif;
+  background: #292929;
+}
+
+@font-face {
+  font-family: "deathstar";
+  src: url("assets/fonts/DEATH_STAR.ttf");
+  src: url("assets/fonts/DEATH_STAR.ttf") format("truetype"),
+    url("assets/fonts/DEATH_STAR.otf") format("opentype");
+}
+
+p,
+strong,
+span,
+a {
+  font-family: "Roboto", sans-serif;
+}
