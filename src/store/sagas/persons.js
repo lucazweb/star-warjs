@@ -28,7 +28,7 @@ export function* getPersons(action) {
         try {
           return call(api.get, p);
         } catch (err) {
-          return;
+          return null;
         }
       })
     );

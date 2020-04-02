@@ -26,7 +26,7 @@ export const DetailsCardComponent = ({ person }) => {
         console.log(err);
       }
     }
-  }, []);
+  });
 
   if (!person) {
     history.push("/");
