@@ -8,8 +8,6 @@ import {
 import api, { apiCustomSearch, api_key } from "../../services/api";
 
 export function* getPersons(action) {
-  console.log(action);
-
   const request_data = [];
   const page = action.payload.page;
   const limit = action.payload.limit;
@@ -24,16 +22,13 @@ export function* getPersons(action) {
     request_data.push(`/people/${i}`);
   }
 
-  console.log(request_data);
-
   try {
     const data = yield all(
       request_data.map((p) => {
         try {
           return call(api.get, p);
         } catch (err) {
-          console.log("FIRST: ", err);
-          return {};
+          return;
         }
       })
     );
@@ -58,7 +53,8 @@ export function* getPersons(action) {
       (acc, person, idx) => [...acc, { ...person, image: personImages[idx] }],
       []
     );
-    yield put(setCurrentPage(action.payload.page));
+
+    yield put(setCurrentPage(page));
     yield put(getPersonsSuccess(result));
   } catch (err) {
     // console.log(err);
