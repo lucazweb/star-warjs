@@ -8,7 +8,6 @@ export const PersonCard = ({ person }) => {
   const history = useHistory();
 
   const handlePersonSelection = (person) => {
-    console.log("handlePersonSelection");
     store.dispatch(selectPerson(person));
     history.push("/details");
   };

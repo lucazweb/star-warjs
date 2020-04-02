@@ -3,7 +3,7 @@ import { IndicatorsBox } from "./pagination.styled";
 
 const Indicators = (props) => (
   <IndicatorsBox>
-    <span>{props.page}</span> / <span>{props.total}</span>
+    <span>Page {props.page}</span>
   </IndicatorsBox>
 );
 

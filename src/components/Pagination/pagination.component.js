@@ -13,11 +13,15 @@ const handleNextPage = (currentPage) => {
 };
 
 const handlePreviosPage = (currentPage) => {
-  const page = currentPage > 1 ? currentPage + 1 : currentPage;
+  if (currentPage > 1) {
+    const page = currentPage - 1;
+    const limit = 6;
+    store.dispatch(getPersons({ page, limit }));
+  }
 };
 
 export const PaginationComponent = ({ page }) => (
-  <PaginationBox>
+  <PaginationBox onClick={() => handlePreviosPage(page)}>
     <PaginationButton>
       <GoTriangleLeft />
     </PaginationButton>
