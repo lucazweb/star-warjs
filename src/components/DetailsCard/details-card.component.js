@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   DetailCardWrapper,
   DetailsCardBody,
@@ -6,9 +6,27 @@ import {
 } from "./details-card.styled";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import axios from "axios";
+import placeholderImg from "../../assets/placeholder.jpg";
 
 export const DetailsCardComponent = ({ person }) => {
   const history = useHistory();
+  const [starships, setStarships] = useState([]);
+
+  useEffect(() => {
+    if (person) {
+      const data = person.starships;
+
+      try {
+        axios.all(data.map((url) => axios.get(url))).then((res) => {
+          const result = res.map((response) => response.data);
+          setStarships(result);
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, []);
 
   if (!person) {
     history.push("/");
@@ -22,7 +40,7 @@ export const DetailsCardComponent = ({ person }) => {
       {person && (
         <div
           className="person-image"
-          style={{ backgroundImage: `url(${person.image})` }}
+          style={{ backgroundImage: `url(${person.image || placeholderImg})` }}
         ></div>
       )}
       <DetailsCardBody>
@@ -38,6 +56,10 @@ export const DetailsCardComponent = ({ person }) => {
               <span>{person.mass}</span>
             </li>
             <li>
+              <strong>Gender</strong>
+              <span>{person.gender}</span>
+            </li>
+            <li>
               <strong>Hair color</strong>
               <span>{person.hair_color}</span>
             </li>
@@ -50,45 +72,31 @@ export const DetailsCardComponent = ({ person }) => {
       </DetailsCardBody>
 
       <StarshipBox>
-        <div className="starship-card">
-          <h3>X-Wing</h3>
-          <ul>
-            <li>
-              <strong>Model</strong>
-              <span>T-65 Xwing</span>
-            </li>
-            <li>
-              <strong>Max Atmosfere Speed</strong>
-              <span>1050</span>
-            </li>
-          </ul>
-        </div>
-        <div className="starship-card">
-          <h3>X-Wing</h3>
-          <ul>
-            <li>
-              <strong>Model</strong>
-              <span>T-65 Xwing</span>
-            </li>
-            <li>
-              <strong>Max Atmosfere Speed</strong>
-              <span>1050</span>
-            </li>
-          </ul>
-        </div>
-        <div className="starship-card">
-          <h3>X-Wing</h3>
-          <ul>
-            <li>
-              <strong>Model</strong>
-              <span>T-65 Xwing</span>
-            </li>
-            <li>
-              <strong>Max Atmosfere Speed</strong>
-              <span>1050</span>
-            </li>
-          </ul>
-        </div>
+        {starships.length > 0 ? (
+          <React.Fragment>
+            {starships.map((starship) => (
+              <div key={starship.created} className="starship-card">
+                <h3>{starship.name}</h3>
+                <ul>
+                  <li>
+                    <strong>Model</strong>
+                    <span>{starship.model}</span>
+                  </li>
+                  <li>
+                    <strong>Max Speed</strong>
+                    <span>{starship.max_atmosphering_speed}</span>
+                  </li>
+                  <li>
+                    <strong>Cargo Capacity</strong>
+                    <span>{starship.cargo_capacity}</span>
+                  </li>
+                </ul>
+              </div>
+            ))}
+          </React.Fragment>
+        ) : (
+          <p> No starships found </p>
+        )}
       </StarshipBox>
     </DetailCardWrapper>
   );

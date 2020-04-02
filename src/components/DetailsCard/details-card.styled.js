@@ -113,7 +113,7 @@ export const StarshipBox = styled(DetailsCardBody)`
     margin: 5px;
     border: 1px solid #109cbc;
     padding: 6px;
-    width: 33%;
+    width: 50%;
     @media only screen and ${mobileMediaQuery} {
       width: 100%;
     }
@@ -122,9 +122,14 @@ export const StarshipBox = styled(DetailsCardBody)`
       font-size: 0.9em;
     }
     ul {
-      padding-left: 20px;
+      padding-left: 10px;
       li {
+        display: flex;
+        justify-content: space-between;
         font-size: 0.8em;
+        &:nth-child(odd) {
+          background: #f3f3f3;
+        }
       }
     }
   }
