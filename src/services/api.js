@@ -1,7 +1,12 @@
 import axios from "axios";
+console.log(process.env);
+
+const proxy = process.env.NODE_ENV === 'development' 
+? 'https://cors-anywhere.herokuapp.com/' 
+: '';
 
 const api = axios.create({
-  baseURL: "https://swapi.co/api",
+  baseURL: `${proxy}https://swapi.dev/api`,
 });
 
 export const api_key = "AIzaSyDCYW8Eisi_A9wLlf1NlOABfKowuLNw5Q4";
