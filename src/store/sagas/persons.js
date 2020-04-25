@@ -5,38 +5,22 @@ import {
   getPersonsFailure,
   setCurrentPage,
 } from "../actions/persons";
+
 import api, { apiCustomSearch, api_key } from "../../services/api";
 
 export function* getPersons(action) {
-  const request_data = [];
+
   const page = action.payload.page;
-  const limit = action.payload.limit;
-
-  const setOffset = (page, limit = 6) => {
-    return (page - 1) * limit;
-  };
-
-  const offset = setOffset(page, limit);
-
-  for (let i = offset + 1; i <= offset + limit; i++) {
-    request_data.push(`/people/${i}`);
-  }
 
   try {
-    const data = yield all(
-      request_data.map((p) => {
-        try {
-          return call(api.get, p);
-        } catch (err) {
-          return null;
-        }
-      })
-    );
+    const { data } = yield call(api.get, '/people', { params: {
+      page,
+    }});
 
-    const persons = yield data.reduce((acc, obj) => [...acc, obj.data], []);
+    const { results } = data;
 
     const imageResponse = yield all(
-      persons.map((p) => {
+      results.map((p) => {
         return call(
           apiCustomSearch,
           `?searchType=image&q=${p.name}&key=${api_key}&cx=014613627884587479518%3Alj9bueunjtj`
@@ -49,24 +33,17 @@ export function* getPersons(action) {
       []
     );
 
-    const result = persons.reduce(
+    const persons = results.reduce(
       (acc, person, idx) => [...acc, { ...person, image: personImages[idx] }],
       []
     );
 
+    persons.pop();
+
     yield put(setCurrentPage(page));
-    yield put(getPersonsSuccess(result));
+    yield put(getPersonsSuccess(persons));
   } catch (err) {
     // console.log(err);
     yield put(getPersonsFailure(`Oups, something wrong with page ${page}..`));
-
-    yield put(
-      getPersonsReq({
-        page: page + 1,
-        limit,
-      })
-    );
-
-    yield put(setCurrentPage(page + 1));
   }
 }
