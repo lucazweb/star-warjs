@@ -14,5 +14,5 @@ $ git clone https://www.github.com/lucazweb/star-warjs
 ```
 
 1. In the root of the project, run: `yarn` ou `npm install`
-2. ...then run `yarn start` or `npm run start`. May the force be with you. 😉
+2. ...then run `yarn start` or `npm run start`. May the force be with you.
 
