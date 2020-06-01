@@ -1,6 +1,6 @@
 # Star WarJs
 
-A React / Redux application for Star wars lovers. See it running ⚡️ [http://starwarjs.surge.sh] (http://starwarjs.surge.sh)
+A React / Redux application for Star wars lovers. See it running ⚡️ [http://starwarjs.surge.sh](http://starwarjs.surge.sh)
 
 ![Star WarJs](screenshot.png)
 
