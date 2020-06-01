@@ -1,20 +1,18 @@
 # Star WarJs
 
-A React / Redux application for Star wars lovers. Follow the instructions to run.
+A React / Redux application for Star wars lovers. See it running ⚡️ [http://starwarjs.surge.sh] (http://starwarjs.surge.sh)
 
 ![Star WarJs](screenshot.png)
 
 
-### Instalação
+### Installation
 
-Execute os seguintes comandos para instalar:
+Run the following commands:
 
 ```
 $ git clone https://www.github.com/lucazweb/star-warjs
 ```
 
-1. Na raiz do projeto, executar: `yarn` ou `npm install`
+1. In the root of the project, run: `yarn` ou `npm install`
+2. ...then run `yarn start` or `npm run start`. May the force be with you.
 
-### Executando
-
-Na raiz do projeto o comando `npm start`
